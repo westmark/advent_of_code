@@ -1,21 +1,32 @@
-# AdventOfCode
+# Advent Of Code
 
-**TODO: Add description**
+My Advent of Code adventures
 
-## Installation
+## Running exercises
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `advent_of_code` to your list of dependencies in `mix.exs`:
+Running the current day's exercise part 1
 
-```elixir
-def deps do
-  [
-    {:advent_of_code, "~> 0.1.0"}
-  ]
-end
+```bash
+> mix day --input <input_file>
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/advent_of_code>.
+Running a specific day's exercise
 
+```bash
+> mix day --day <day> --year <year> --part <part 1|2> --input <input_file>
+```
+
+Running test exercises
+
+```bash
+> mix test
+```
+
+## Use this repo as a template
+
+```bash
+> git clone --branch base --depth 1 git@github.com:westmark/advent_of_code.git
+> cd advent_of_code
+> git remote remove origin
+> git switch -c main
+```
