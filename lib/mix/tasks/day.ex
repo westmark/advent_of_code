@@ -5,9 +5,9 @@ defmodule Mix.Tasks.Day do
   @options [day: :string, part: :string, year: :string, input: :string]
 
   def run(args) do
-    {parsed, _, invalid} = OptionParser.parse(args, strict: @options)
+    {parsed, _, _} = OptionParser.parse(args, strict: @options)
 
-    if :input in invalid do
+    if not Keyword.has_key?(parsed, :input) and not Keyword.has_key?(parsed, :part) do
       IO.puts("Missing input file")
       System.halt(1)
     end
@@ -25,7 +25,13 @@ defmodule Mix.Tasks.Day do
       end
 
     part = Keyword.get(parsed, :part, 1)
-    input = parsed[:input]
+
+    input =
+      if Keyword.has_key?(parsed, :input) do
+        parsed[:input]
+      else
+        "input.txt"
+      end
 
     module_name =
       String.to_atom("Elixir.AdventOfCode.Y#{year}.Day#{String.pad_leading(day, 2, "0")}")
@@ -34,6 +40,6 @@ defmodule Mix.Tasks.Day do
 
     data = AdventOfCode.Helpers.FileLoader.load(input, module)
 
-    apply(module, :"part_#{part}", [data])
+    module |> apply(:"part_#{part}", [data]) |> IO.inspect()
   end
 end
