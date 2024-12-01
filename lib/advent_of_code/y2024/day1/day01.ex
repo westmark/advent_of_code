@@ -2,8 +2,6 @@ defmodule AdventOfCode.Y2024.Day01 do
   @moduledoc false
   use AdventOfCode.Exercise
 
-  @regex ~r/(\d+)\s+(\d+)/
-
   def part_1(input) do
     input
     |> read()
@@ -19,9 +17,8 @@ defmodule AdventOfCode.Y2024.Day01 do
 
   defp read(input) do
     input
-    |> Enum.map(&Regex.scan(@regex, &1))
-    |> Enum.map(&List.first/1)
-    |> Enum.map(fn [_, l, r] -> {String.to_integer(l), String.to_integer(r)} end)
+    |> Enum.map(&String.split(&1, ~r/\s+/))
+    |> Enum.map(fn [l, r] -> {String.to_integer(l), String.to_integer(r)} end)
     |> Enum.reduce({[], []}, fn {l, r}, {acc_l, acc_r} ->
       {[l | acc_l], [r | acc_r]}
     end)

@@ -7,13 +7,13 @@ My Advent of Code adventures
 Running the current day's exercise part 1
 
 ```bash
-> mix day --input <input_file>
+> mix solve --input <input_file>
 ```
 
 Running a specific day's exercise
 
 ```bash
-> mix day --day <day> --year <year> --part <part 1|2> --input <input_file>
+> mix solve --day <day> --year <year> --part <1|2> --input <input_file>
 ```
 
 Running test exercises
